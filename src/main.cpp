@@ -8,20 +8,26 @@ bool running = false;
 void setup() {
     Serial.begin(9600);
     sensor.setup();
-    pinMode(laser, OUTPUT);
 }
 
 void loop() {
-    digitalWrite(laser, HIGH);
     int reading = sensor.readSensor();
 
-    if (reading < 300) {
+
+    if ((reading < 150) && (!running)) {
         running = true;
     } else {
         running = false;
     }
+
+
+
+
+
+
     Serial.print("Running: ");
     Serial.print(running);
     Serial.print("       Value: ");
     Serial.println(reading);
+
 }
