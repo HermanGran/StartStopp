@@ -3,6 +3,7 @@
 #include "Timer/Timer.hpp"
 
 Sensor sensor(22);
+// Initializes timer class, values are thresholds for sensor, timer-start and timer-stop
 Timer timer(sensor, 150, 5000, 2000);
 
 void setup() {
