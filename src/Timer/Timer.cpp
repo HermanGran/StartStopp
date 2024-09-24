@@ -4,27 +4,34 @@
 
 #include "Timer/Timer.hpp"
 
-Timer::Timer(Sensor &sensor_) : sensor(sensor_), time(0), prevTime(0), running(false) {}
+Timer::Timer(Sensor &sensor_, int thresholdSensor_, int thresholdTimerStart_, int thresholdTimerStop_) :
+sensor(sensor_),
+time(0),
+prevTime(0),
+running(false),
+thresholdSensor(thresholdSensor_),
+thresholdTimerStart(thresholdTimerStart_),
+thresholdTimerStop(thresholdTimerStop_) {}
 
 void Timer::run() {
-    signed long reading = sensor.readSensor();
+    int reading = sensor.readSensor();
 
-    if ((reading > 150 && !running)) {
+    if ((reading < thresholdSensor && !running && (millis() > finalTime + thresholdTimerStart))) {
         time = 0;
         prevTime = millis();
         running = true;
-    } else if (reading > 150 && running && time > 3000) {
+    } else if (reading < thresholdSensor && running && time > thresholdTimerStart) {
         running = false;
-        delay(500);
     }
 
     if (running) {
         time = millis() - prevTime;
+        finalTime = millis();
     }
 }
 
-signed long Timer::getTime() {
-    return time;
+double Timer::getTime() {
+    return time / 1000.0;
 }
 
 bool Timer::getRunning() {

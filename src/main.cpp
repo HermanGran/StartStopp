@@ -3,7 +3,7 @@
 #include "Timer/Timer.hpp"
 
 Sensor sensor(22);
-Timer timer(sensor);
+Timer timer(sensor, 150, 5000, 2000);
 
 void setup() {
     Serial.begin(9600);
