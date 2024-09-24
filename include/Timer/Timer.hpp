@@ -14,13 +14,13 @@ public:
 
     void run();
 
-    double getTime();
+    double getTime() const;
 
-    bool getRunning();
+    bool getRunning() const;
 private:
     long long time;
     long long prevTime;
-    long finalTime = 0;
+    unsigned long finalTime = 0;
     bool running;
 
     int thresholdSensor;

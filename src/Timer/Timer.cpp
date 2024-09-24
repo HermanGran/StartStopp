@@ -30,10 +30,10 @@ void Timer::run() {
     }
 }
 
-double Timer::getTime() {
+double Timer::getTime() const {
     return time / 1000.0;
 }
 
-bool Timer::getRunning() {
+bool Timer::getRunning() const {
     return running;
 }
