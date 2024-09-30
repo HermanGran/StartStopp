@@ -11,10 +11,9 @@ void Button::setup() const {
 }
 
 bool Button::read() const {
-    long long currentTime = millis();
     long long lastPressed;
 
-    if ((digitalRead(pinInput) == HIGH) && currentTime >= lastPressed + 50) {
+    if ((digitalRead(pinInput) == HIGH) && millis() >= lastPressed + 50) {
         lastPressed = millis();
         return true;
     } else {

@@ -25,5 +25,4 @@ void loop() {
     timer.reset(button.read(), lcd);
     lcd.setCursor(0, 1);
     lcd.print(timer.getTime());
-
 }
