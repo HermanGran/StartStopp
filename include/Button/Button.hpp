@@ -11,9 +11,10 @@ class Button {
 public:
     Button(int pinInput_);
 
-    void setup();
+    void setup() const;
 
-    bool read();
+    bool read() const;
+
 private:
     int pinInput;
 };

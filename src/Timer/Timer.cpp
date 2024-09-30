@@ -9,6 +9,7 @@ sensor(sensor_),
 time(0),
 prevTime(0),
 running(false),
+ready(true),
 thresholdSensor(thresholdSensor_),
 thresholdTimerStart(thresholdTimerStart_),
 thresholdTimerStop(thresholdTimerStop_) {}
@@ -16,10 +17,11 @@ thresholdTimerStop(thresholdTimerStop_) {}
 void Timer::run() {
     int reading = sensor.readSensor();
 
-    if ((reading < thresholdSensor && !running && (millis() > finalTime + thresholdTimerStart))) {
+    if ((reading < thresholdSensor && !running && ready && (millis() > finalTime + thresholdTimerStart))) {
         time = 0;
         prevTime = millis();
         running = true;
+        ready = false;
     } else if (reading < thresholdSensor && running && time > thresholdTimerStart) {
         running = false;
     }
@@ -27,6 +29,18 @@ void Timer::run() {
     if (running) {
         time = millis() - prevTime;
         finalTime = millis();
+    }
+}
+
+void Timer::reset(bool buttonState_, LiquidCrystal& lcd_) {
+    if (buttonState_) {
+        if (running) {
+            running = false;
+        } else {
+            lcd_.clear();
+            finalTime = 0;
+            ready = true;
+        }
     }
 }
 
