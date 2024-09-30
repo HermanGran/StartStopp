@@ -19,15 +19,6 @@ void setup() {
 void loop() {
     timer.run();
 
-    Serial.print("Running: ");
-    Serial.print(timer.getRunning());
-    Serial.print("       Value: ");
-    Serial.print(sensor.readSensor());
-    Serial.print("      Time: ");
-    Serial.println(timer.getTime());
-
     lcd.setCursor(0, 1);
-    //lcd.clear();
     lcd.print(timer.getTime());
-
 }
