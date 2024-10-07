@@ -11,7 +11,7 @@
 
 class Timer{
 public:
-    Timer(Sensor &sensor_, int thresholdSensor_, int thresholdTimerStop_);
+    Timer(Sensor &sensor_, int thresholdTimerStop_);
 
     void run();
 
@@ -20,6 +20,7 @@ public:
     double getTime() const;
 
     bool getRunning() const;
+
 private:
     long long time;
     long long prevTime;
@@ -27,7 +28,6 @@ private:
     bool running;
     bool ready;
 
-    int thresholdSensor;
     int thresholdTimerStop;
 
     Sensor &sensor;

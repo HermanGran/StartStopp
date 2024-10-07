@@ -9,13 +9,19 @@
 
 class Sensor{
 public:
-    Sensor(int pin);
+    Sensor(int pin_, int threshold_);
 
     void setup();
 
-    int readSensor();
+    bool readSensor();
+
+    bool errorDetection();
+
 private:
     int pin;
+    int threshold;
+    long long time;
+    long long prevTime;
 };
 
 #endif //STARTSTOPP_SENSOR_HPP
