@@ -27,7 +27,6 @@ private:
     unsigned long finalTime = 0;
     bool running;
     bool ready;
-
     int thresholdTimerStop;
 
     Sensor &sensor;
